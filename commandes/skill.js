@@ -1,5 +1,6 @@
-const Commande = require('./commande')
-const request = require("request")
+const Commande = require('./commande');
+const Util = require('../util/utils');
+const request = require("request");
 
 module.exports = class Skill extends Commande{
 
@@ -8,18 +9,18 @@ module.exports = class Skill extends Commande{
     };
 
     static action (message) {
-        let args = message.content.split(' ')
-        args.shift() //supprime le premier caractere : !
+        let args = message.content.split(' ');
+        args.shift(); //delete the first String : !skill
+        let msg = Util.gatherString(args); //Construct a string at element.name format
         giveSkill(args,message);
     };
 }
 
 function giveSkill(skill,message){
     request("https://mhw-db.com/skills", function(error,response,body) {
-        plop = JSON.parse(body);
-        plop.forEach(element => {
-        console.log(element.name)
-            if (element.name === ""+ skill[0]+" " + skill[1]){
+        let bodyJSON = JSON.parse(body);
+        bodyJSON.forEach(element => {
+            if (element.name === ){
                 message.channel.send(element.description);
                 return;
             }
