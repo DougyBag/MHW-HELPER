@@ -8,7 +8,7 @@ module.exports = class Armor extends Commande{
 
     static action (message) {
         let args = message.content.split(' ');
-        args.shift(); //supprime le premier caractere : !
+        args.shift(); //supprime le premier caractere : !armor
         message.channel.send('armor');
     }
 }
